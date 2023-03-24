@@ -6,6 +6,7 @@ local players = game:GetService("Players");
 local workspace = game:GetService("Workspace");
 
 -- variables
+local Mouse = game.Players.LocalPlayer:GetMouse()
 local localPlayer = players.LocalPlayer;
 local camera = workspace.CurrentCamera;
 local viewportSize = camera.ViewportSize;
@@ -361,7 +362,7 @@ function EspObject:Render()
 		tracer.Transparency = options.tracerColor[2];
 		tracer.To = (corners.bottomLeft + corners.bottomRight)*0.5;
 		tracer.From =
-			options.tracerOrigin == "Mouse" and userInputService:GetMouseLocation() or
+			options.tracerOrigin == "Mouse" and Vector2.new(Mouse.X, Mouse.Y + 37) or
 			options.tracerOrigin == "Top" and viewportSize*Vector2.new(0.5, 0) or
 			options.tracerOrigin == "Bottom" and viewportSize*Vector2.new(0.5, 1);
 
