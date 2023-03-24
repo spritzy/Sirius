@@ -1,4 +1,5 @@
 -- services
+local userInputService = game:GetService("UserInputService")
 local getService = game.GetService;
 local runService = game:GetService("RunService");
 local players = game:GetService("Players");
@@ -8,7 +9,6 @@ local workspace = game:GetService("Workspace");
 local localPlayer = players.LocalPlayer;
 local camera = workspace.CurrentCamera;
 local viewportSize = camera.ViewportSize;
-local userInputService = getService(game, "UserInputService");
 local container = Instance.new("Folder",
 	gethui and gethui() or game:GetService("CoreGui"));
 
@@ -361,7 +361,7 @@ function EspObject:Render()
 		tracer.Transparency = options.tracerColor[2];
 		tracer.To = (corners.bottomLeft + corners.bottomRight)*0.5;
 		tracer.From =
-			options.tracerOrigin == "Mouse" and viewportSize*0.5 or
+			options.tracerOrigin == "Mouse" and userInputService:GetMouseLocation() or
 			options.tracerOrigin == "Top" and viewportSize*Vector2.new(0.5, 0) or
 			options.tracerOrigin == "Bottom" and viewportSize*Vector2.new(0.5, 1);
 
